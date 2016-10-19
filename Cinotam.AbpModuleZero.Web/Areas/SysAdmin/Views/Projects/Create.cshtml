@@ -1,0 +1,109 @@
+﻿@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page_title">
+    <div class="title_left">
+        <h2>Crear Proyecto</h2>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Formulario de creación de proyecto <small><a href="#"> Ayuda</a></small></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br>
+                <form id="create-project" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="project-name">
+                            Nombre del Proyecto <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="text" id="project-name" required="required" name="Name" class="form-control col-md-7 col-xs-12" data-parsley-id="9960"><ul class="parsley-errors-list" id="parsley-id-9960"></ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="project-description">
+                            Descripción <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <textarea class="form-control col-md-12" name="Description" id="project-description"></textarea>
+                            <ul class="parsley-errors-list" id="parsley-id-8127"></ul>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="start-date" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Inicio</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="datetime" class="form-control" id="start-date" name="StartDate" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="end-date" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Finalización</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="datetime" class="form-control" id="end-date" name="EndDate" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="end-date" class="control-label col-md-3 col-sm-3 col-xs-12">¿Definir Presupuesto Inicial?</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" id="defineBudget" />
+                                </label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="bdefiner" class="form-group hide">
+                        <label for="initial-budget" class="control-label col-md-3 col-sm-3 col-xs-12">Presupuesto Inicial</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            <input type="number" class="form-control" id="initial-budget" name="InitialBudget" />
+                        </div>
+
+                    </div>
+
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <button type="button" data-goback class="btn btn-primary">@L("Cancel")</button>
+                            <button type="submit" class="btn btn-success">@L("Save")</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        (function ($) {
+            var checkbox = $('#defineBudget');
+            var definerForm = $('#bdefiner');
+            $("#create-project").on('submit', function (e) {
+                e.preventDefault();
+                var form = $(this);
+                var project = form.serializeFormToObject();
+                abp.ui.setBusy(form, createProject(project));
+            });
+            checkbox.change(function () {
+                if (checkbox.is(':checked')) {
+                    console.log("Ok");
+                    definerForm.removeClass('hide');
+                } else {
+                    definerForm.addClass('hide');
+                }
+            });
+            var createProject = function (project) {
+                return abp.services.app.project.createProject(project).done(function (response) {
+                    window.location.href = "/ProjectManager" + "/Manage/" + response;
+                });
+            };
+        })($);
+    </script>
+}

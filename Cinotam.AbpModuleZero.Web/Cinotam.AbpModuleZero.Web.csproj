@@ -1185,6 +1185,10 @@
     <None Include="Areas\SysAdmin\Views\OrganizationUnits\_childOrgUnits.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Shared\_changeProfilePicture.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Shared\_AsideMenu.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Projects\Create.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Projects\Edit.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Projects\ProjectsList.cshtml" />
+    <Content Include="Areas\SysAdmin\Views\Projects\Projects.cshtml" />
     <None Include="Areas\SysAdmin\Views\Shared\_childPermissions.cshtml" />
     <None Include="Areas\SysAdmin\Views\Users\CreateEditUser.cshtml" />
     <Content Include="Areas\SysAdmin\Views\Users\EditRoles.cshtml" />
@@ -1312,6 +1316,7 @@
     <Compile Include="Areas\SysAdmin\Controllers\LayoutController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\MenuController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\NotificationsController.cs" />
+    <Compile Include="Areas\SysAdmin\Controllers\ProjectsController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\RolesController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\TemplatesController.cs" />
     <Compile Include="Areas\SysAdmin\Controllers\TenantsController.cs" />
@@ -1467,7 +1472,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61814</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:61815/</IISUrl>
+          <IISUrl>http://localhost:61866/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

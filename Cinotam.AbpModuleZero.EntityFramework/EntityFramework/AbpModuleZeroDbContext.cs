@@ -6,6 +6,10 @@ using Cinotam.Cms.DatabaseEntities.Category.Entities;
 using Cinotam.Cms.DatabaseEntities.Menus.Entities;
 using Cinotam.Cms.DatabaseEntities.Pages.Entities;
 using Cinotam.Cms.DatabaseEntities.Templates.Entities;
+using SapModule.Core.Client.Entities;
+using SapModule.Core.ProjectMembers.Entities;
+using SapModule.Core.Projects.Entities;
+using SapModule.Core.ToDoLists.Entities;
 using System.Data.Common;
 using System.Data.Entity;
 
@@ -29,6 +33,14 @@ namespace Cinotam.AbpModuleZero.EntityFramework
         public IDbSet<MenuSectionItemContent> MenuSectionItemContents { get; set; }
         public IDbSet<Category> Categories { get; set; }
         public IDbSet<CategoryContent> CategoryContents { get; set; }
+        #endregion
+
+
+        #region CinotamSap
+        public IDbSet<ProjectMember> ProjectMembers { get; set; }
+        public IDbSet<ClientCompany> ClientConCompanies { get; set; }
+        public IDbSet<Project> Projects { get; set; }
+        public IDbSet<ToDoList> TodoLists { get; set; }
         #endregion
         /* NOTE: 
          *   Setting "Default" to base class helps us when working migration commands on Package Manager Console.

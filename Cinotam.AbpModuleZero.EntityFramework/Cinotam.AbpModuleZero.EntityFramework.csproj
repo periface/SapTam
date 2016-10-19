@@ -214,6 +214,18 @@
     <Compile Include="Migrations\201610061550416_Edition_Price.Designer.cs">
       <DependentUpon>201610061550416_Edition_Price.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610191827422_Projects.cs" />
+    <Compile Include="Migrations\201610191827422_Projects.Designer.cs">
+      <DependentUpon>201610191827422_Projects.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610191829566_TodoLists.cs" />
+    <Compile Include="Migrations\201610191829566_TodoLists.Designer.cs">
+      <DependentUpon>201610191829566_TodoLists.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610191831566_ProjectMember.cs" />
+    <Compile Include="Migrations\201610191831566_ProjectMember.Designer.cs">
+      <DependentUpon>201610191831566_ProjectMember.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\AbpZeroDbMigrator.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="AbpModuleZeroDataModule.cs" />
@@ -251,6 +263,10 @@
     <ProjectReference Include="..\Cinotam.Cms.DatabaseEntities\Cinotam.Cms.DatabaseEntities.csproj">
       <Project>{2A5BA0A4-51FB-4132-BD08-F00357B24F23}</Project>
       <Name>Cinotam.Cms.DatabaseEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SapModule.Core\SapModule.Core.csproj">
+      <Project>{43620626-653D-41B7-851A-4E1334B4A1F7}</Project>
+      <Name>SapModule.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -322,6 +338,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610061550416_Edition_Price.resx">
       <DependentUpon>201610061550416_Edition_Price.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610191827422_Projects.resx">
+      <DependentUpon>201610191827422_Projects.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610191829566_TodoLists.resx">
+      <DependentUpon>201610191829566_TodoLists.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610191831566_ProjectMember.resx">
+      <DependentUpon>201610191831566_ProjectMember.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

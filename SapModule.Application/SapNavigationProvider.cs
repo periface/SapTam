@@ -12,9 +12,16 @@ namespace SapModule.Application
                 .AddItem(
                 new MenuItemDefinition(
                     "SapSystem",
-                    L("Sap")
+                    L("Sap"),
+                     icon: "fa fa-lg fa-fw fa-tiles",
+                    customData: new { ActionName = "ProjectsList", ControllerName = "Projects" }
                     )
-                    .AddItem(new MenuItemDefinition("Projects", L("Projects")))
+                    .AddItem(
+                    new MenuItemDefinition(
+                        "Projects",
+                        L("Projects"),
+                        customData: new { ActionName = "ProjectsList", ControllerName = "Projects" }
+                    ))
 
 
                 ));

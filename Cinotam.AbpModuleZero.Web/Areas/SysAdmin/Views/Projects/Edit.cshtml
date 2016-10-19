@@ -1,0 +1,80 @@
+﻿@model SapModule.Application.Projects.Dto.ProjectInput
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="page_title">
+    <div class="title_left">
+        <h3>Editar Proyecto</h3>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Formulario de creación de proyecto <small><a href="#"> Ayuda</a></small></h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <br>
+                <form id="create-project" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
+                    @Html.HiddenFor(a => a.Id)
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                            Nombre del Proyecto <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            @Html.TextBoxFor(a => a.Name, new { @class = "form-control col-md-7 col-xs-12", required = "required", name = "Name" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="project-description">
+                            Descripción <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            @Html.TextAreaFor(a=>a.Description,new {@class= "form-control col-md-12" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="StartDate" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Inicio</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            @Html.TextBoxFor(a=>a.StartDate,new {@class= "form-control", disabled = "disabled" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="EndDate" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Finalización</label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                            @Html.TextBoxFor(a => a.EndDate, new { @class = "form-control", disabled = "disabled" })
+                        </div>
+                    </div>
+                    <div class="ln_solid"></div>
+                    <div class="form-group">
+                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                            <a data-goback class="btn btn-primary">@L("Cancel")</a>
+                            <button type="submit" class="btn btn-success">@L("Save")</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script>
+        (function ($) {
+            $("#create-project").on('submit', function (e) {
+                e.preventDefault();
+                var form = $(this);
+                var project = form.serializeFormToObject();
+                abp.ui.setBusy(form, editProject(project));
+            });
+            var editProject = function (project) {
+                return abp.services.app.project.editProject(project).done(function (response) {
+                    window.location.href = "/ProjectManager" + "/Manage/" + project.Id;
+                });
+            };
+        })($);
+    </script>
+}

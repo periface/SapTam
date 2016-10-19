@@ -1,0 +1,69 @@
+﻿@using Abp.Web.Mvc.Extensions
+@using Cinotam.AbpModuleZero.Authorization
+@model Cinotam.ModuleZero.AppModule.Users.Dto.UserSpecialPermissionsInput
+
+@{
+    Layout = null;
+}
+<link href="~/Scripts/jstree/themes/proton/style.min.css" rel="stylesheet" />
+<div class="modal-dialog" id="leaderModal" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                ×
+            </button>
+            <h4 class="modal-title"><i class="fa fa-3x fa-users"></i> </h4>
+        </div>
+        <div class="modal-body no-padding">
+
+            <form method="POST" id="setPermissions" class="smart-form">
+                <header>
+                    @L("SetSpecialPermissionsForm")
+
+                </header>
+                @Html.HiddenFor(a => a.UserId)
+                <fieldset>
+                    @if (IsGranted(PermissionNames.PagesSysAdminPermissions))
+                    {
+                        <div class="row">
+                            <div class="col col-12">
+                                <h5>@L("Permissions")</h5>
+
+                                <div id="container">
+                                    <ul id="tree">
+                                        @foreach (var permission in Model.AssignedPermissions)
+                                        {
+                                            <li data-jstree='{ "selected" : @permission.Granted.ToString().ToLower() }' id="@permission.Name">
+                                                @permission.DisplayName
+
+                                                @if (permission.ChildPermissions.Any())
+                                                {
+                                                    { Html.RenderPartial("_childPermissions", permission.ChildPermissions); }
+                                                }
+                                            </li>
+                                        }
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </fieldset>
+                <footer>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        @L("Save")
+                    </button>
+                    <button type="button" class="btn btn-warning js-reset-permissions">
+                        @L("ResetPermissions")
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        @L("Cancel")
+                    </button>
+                </footer>
+
+            </form>
+        </div>
+    </div>
+</div>
+@Html.IncludeScript("~/Scripts/jstree/jstree.min.js")
+@Html.IncludeScript("~/Areas/SysAdmin/Views/Users/UserSpecialPermissions.js")

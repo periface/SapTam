@@ -1,0 +1,55 @@
+﻿@using Abp.Web.Mvc.Extensions
+@model Cinotam.ModuleZero.AppModule.Roles.Dto.RoleSelectorOutput
+@{
+    Layout = null;
+}
+<div class="modal-dialog" id="leaderModal" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                ×
+            </button>
+            <h4 class="modal-title"><i class="fa fa-3x fa-users"></i> </h4>
+        </div>
+        <div class="modal-body no-padding">
+
+            <form id="selectRoles" class="smart-form">
+                @Html.HiddenFor(a => a.UserId)
+                <header>
+                    @L("SelectRoles")
+                </header>
+                <fieldset>
+                    @foreach (var rol in Model.RoleDtos)
+                    {
+                        if (rol.IsSelected)
+                        {
+                            <section>
+                                <label class="checkbox">
+                                    <input type="checkbox" id="@rol.Name" checked="checked" value="@rol.Name">
+                                    <i></i>@rol.DisplayName
+                                </label>
+                            </section>
+                        }
+                        else
+                        {
+                            <label class="checkbox">
+                                <input type="checkbox" id="@rol.Name" value="@rol.Name">
+                                <i></i>@rol.DisplayName
+                            </label>
+                        }
+                    }
+                </fieldset>
+                <footer>
+                    <button type="submit" class="btn btn-primary">
+                        @L("Save")
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        @L("Cancel")
+                    </button>
+                </footer>
+
+            </form>
+        </div>
+    </div>
+</div>
+@Html.IncludeScript("~/Areas/SysAdmin/Views/Users/EditRoles.js")

@@ -1,0 +1,62 @@
+﻿@using Abp.Web.Mvc.Extensions
+@model Cinotam.ModuleZero.AppModule.Languages.Dto.LocalizationTextInput
+
+@{
+    Layout = null;
+}
+<div class="modal-dialog" id="leaderModal" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                ×
+            </button>
+            <h4 class="modal-title"><i class="fa fa-3x fa-flag-o"></i> </h4>
+        </div>
+        <div class="modal-body no-padding">
+
+            <form method="POST" id="editText" class="smart-form">
+                @Html.HiddenFor(a => a.Key)
+                @Html.HiddenFor(a => a.LanguageName)
+                @Html.HiddenFor(a => a.Source)
+                <header>
+                    @L("ChangeText")
+                </header>
+                <fieldset>
+                    <section>
+                        <div class="row">
+                            <label class="label col col-6"><strong>@L("Source"):</strong> @Model.Source</label>
+                            <label class="label col col-6"><strong>@L("Language"):</strong> @Model.LanguageName</label>
+                        </div>
+                        <div class="row">
+                            <label class="label col col-4"><strong>@L("Key"):</strong> @Model.Key</label>
+
+                        </div>
+                    </section>
+
+                    <section>
+                        <div class="row">
+                            <label class="label col col-2">@L("Text")</label>
+                            <div class="col col-10">
+                                <label class="textarea">
+                                    <i class="icon-append fa fa-comment"></i>
+                                    @Html.TextAreaFor(a => a.Value, new { required = "required",@class="custom-scroll" })
+                                </label>
+                            </div>
+                        </div>
+                    </section>
+
+                </fieldset>
+                <footer>
+                    <button type="submit" class="btn btn-primary">
+                        @L("Save")
+                    </button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        @L("Cancel")
+                    </button>
+                </footer>
+
+            </form>
+        </div>
+    </div>
+</div>
+@Html.IncludeScript("~/Areas/SysAdmin/Views/Languages/EditText.js")

@@ -1,0 +1,14 @@
+﻿@using Abp.Web.Mvc.Extensions
+
+@{
+    Layout = null;
+}
+<ul id="userNotifications" class="notification-body">
+    <li>
+        <span>
+
+            <a href="@Url.Action("MyProfile", "Users")">See all</a>
+        </span>
+    </li>
+</ul>
+@Html.IncludeScript("~/Areas/SysAdmin/Views/Layout/GetNotifications.js")

@@ -1,0 +1,164 @@
+﻿@using Abp.Web.Mvc.Extensions
+@using Cinotam.AbpModuleZero
+
+<!-- MAIN CONTENT -->
+<div id="content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+            <h1 class="page-title txt-color-blueDark">
+                <i class="fa-fw fa fa-gear"></i>
+                @L("Configuration")
+                <span>
+                    >
+                    @L("ConfigurationManagement")
+                </span>
+            </h1>
+        </div>
+    </div>
+    <section id="widget-grid">
+        <div class="row">
+
+            <article class="col-xs-12 sortable-grid ui-sortable">
+
+                <div class="jarviswidget jarviswidget-sortable" id="wid-id-roleTable" style="" role="widget">
+                    <!-- widget options:
+                    usage: <div class="jarviswidget" id="wid-id-0" data-widget-editbutton="false">
+
+                    data-widget-colorbutton="false"
+                    data-widget-editbutton="false"
+                    data-widget-togglebutton="false"
+                    data-widget-deletebutton="false"
+                    data-widget-fullscreenbutton="false"
+                    data-widget-custombutton="false"
+                    data-widget-collapsed="true"
+                    data-widget-sortable="false"
+
+                    -->
+                    <header role="heading">
+
+                        <ul id="widget-tab-1" class="nav nav-tabs">
+
+                            @*<li class="active">
+
+                                    <a data-toggle="tab" href="#hr1"> <i class="fa fa-lg fa-cubes"></i> <span class="hidden-mobile hidden-tablet"> Diseño </span> </a>
+
+                                </li>*@
+                            <li class="active">
+                                <a data-toggle="tab" href="#hr1"> <i class="fa fa-lg fa-envelope-o"></i> <span class="hidden-mobile hidden-tablet"> @L("EmailSettings") </span></a>
+                            </li>
+                            <li>
+
+
+                                <a data-toggle="tab" href="#hr3"> <i class="fa fa-lg fa-user"></i> <span class="hidden-mobile hidden-tablet"> @L("Account") </span></a>
+                            </li>
+                            <li>
+
+
+                                <a data-toggle="tab" href="#hr2"> <i class="fa fa-lg fa-gears"></i> <span class="hidden-mobile hidden-tablet"> @L("Other") </span></a>
+                            </li>
+                            
+                        </ul>
+                        <span class="jarviswidget-loader"><i class="fa fa-refresh fa-spin"></i></span>
+
+                    </header>
+
+                    <!-- widget div-->
+                    <div role="content">
+
+                        <!-- widget edit box -->
+                        <div class="jarviswidget-editbox">
+                            <!-- This area used as dropdown edit box -->
+                            <input class="form-control" type="text">
+                            <span class="note"><i class="fa fa-check text-success"></i> @Ls(AbpModuleZeroConsts.LocalizationSmartAdminSourceName, "ChangeTitle")</span>
+
+                        </div>
+                        <!-- end widget edit box -->
+                        <!-- widget content -->
+
+
+                        <div class="widget-body">
+                            <form id="settings">
+                                <fieldset>
+                                    <div class="tab-content">
+
+                                        <div class="tab-pane fade  in active" id="hr1">
+
+                                            <div data-ajax-load data-parameters='{
+                                                         settingNames:[
+                                                           "Abp.Net.Mail.Smtp.Host",
+                                                           "Abp.Net.Mail.Smtp.Port",
+                                                           "Abp.Net.Mail.Smtp.UserName",
+                                                           "Abp.Net.Mail.Smtp.Password",
+                                                           "Abp.Net.Mail.Smtp.Domain",
+                                                           "Abp.Net.Mail.Smtp.EnableSsl",
+                                                           "Abp.Net.Mail.Smtp.UseDefaultCredentials",
+                                                           "Abp.Net.Mail.DefaultFromAddress",
+                                                           "Abp.Net.Mail.DefaultFromDisplayName"
+                                                         ],
+                                                         configurationName :"EmailConfigs"
+                                                         }' data-url="@Url.Action("GetConfigurationsByName")"></div>
+
+
+                                        </div>
+                                        <div class="tab-pane" id="hr2">
+
+                                            <div data-ajax-load data-parameters='{
+
+                                                            settingNames:[
+                                                                  "Abp.Localization.DefaultLanguageName",
+                                                                  "Abp.Timing.TimeZone",
+                                                                   "Abp.Zero.OrganizationUnits.MaxUserMembershipCount",
+
+                                                           "Abp.WebApi.Runtime.Caching.ClearPassword",
+                                                            "WebSiteStatus",
+                                                 "UseSmtp"
+                                                            ],
+                                                            configurationName:"Other"
+                                                         }' data-url="@Url.Action("GetConfigurationsByName")"></div>
+
+
+                                        </div>
+                                        <div class="tab-pane" id="hr3">
+
+                                            <div data-ajax-load data-parameters='{
+
+                                                            settingNames:[
+                                                                  "Abp.Zero.UserManagement.IsEmailConfirmationRequiredForLogin",
+                                                                  "Abp.Zero.UserManagement.TwoFactorLogin.IsEnabled",
+                                                                  "Abp.Zero.UserManagement.TwoFactorLogin.IsRememberBrowserEnabled",
+                                                                  "Abp.Zero.UserManagement.TwoFactorLogin.IsEmailProviderEnabled"  ,
+                                                                  "Abp.Zero.UserManagement.TwoFactorLogin.IsSmsProviderEnabled",
+                                                                  "Abp.Zero.UserManagement.UserLockOut.IsEnabled",
+                                                                  "Abp.Zero.UserManagement.UserLockOut.MaxFailedAccessAttemptsBeforeLockout",
+                                                                  "Abp.Zero.UserManagement.UserLockOut.DefaultAccountLockoutSeconds",
+                                                                  ""
+                                                            ],
+                                                            configurationName:"Account"
+                                                         }' data-url="@Url.Action("GetConfigurationsByName")"></div>
+
+
+                                        </div>
+                                    </div>
+                                </fieldset>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">@L("Save")</button>
+                                </div>
+                            </form>
+                            <!-- end widget content -->
+
+                        </div>
+                        <!-- end widget div -->
+
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+</div>
+@section pagespecific{
+
+    @Html.IncludeScript("~/js/DivAjaxLoader.js")
+
+    @Html.IncludeScript("~/Areas/SysAdmin/Views/Configuration/Configurations.js")
+}

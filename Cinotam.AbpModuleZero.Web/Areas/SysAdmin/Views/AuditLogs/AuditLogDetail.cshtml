@@ -1,0 +1,80 @@
+﻿@model Cinotam.ModuleZero.AppModule.AuditLogs.Dto.AuditLogDto
+
+@{
+    Layout = null;
+}
+
+<div class="modal-dialog" id="leaderModal" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                ×
+            </button>
+            <h4 class="modal-title"><i class="fa fa-3x fa-file-text"></i> </h4>
+        </div>
+        <div class="modal-body no-padding">
+
+            <form   class="smart-form">
+                <header>
+                    <strong>@L("MethodName")</strong> : @Model.MethodName
+                </header>
+                <fieldset>
+                    <section>
+                        <h4>@L("BrowserInfo")</h4>
+                        <strong>@Model.BrowserInfo </strong>
+                    </section>
+                    <section>
+                        <h4>@L("IP")</h4>
+                        <strong> @Model.ClientIpAddress </strong>
+                    </section>
+                    <section>
+                        <h4>@L("Parameters")</h4>
+                        <pre style="min-height: 100px"><code>@Model.Parameters</code></pre>
+                       
+                    </section>
+                    <section>
+                        <h4>@L("ExecutionTime")</h4>
+                        <strong>@Model.ExecutionTime.ToLongDateString() @Model.ExecutionTime.ToLongTimeString()</strong>
+                    </section>
+                    <section>
+                        <h4>@L("Duration")</h4>
+                        <strong>@Model.ExecutionDuration ms</strong>  
+                    </section>
+                    <section>
+                        <h4>@L("UserInfo")</h4>
+                        <strong>@Model.UserName </strong>
+                    </section>
+                    <section>
+                        <h4>@L("ClientName")</h4>
+                        <strong>@Model.ClientName </strong>
+                    </section>
+                    <section>
+                        @if (!string.IsNullOrEmpty(Model.Exception))
+                        {
+                            <div class="alert alert-warning">
+                                <h4>@L("ExceptionFound")</h4>
+                                <a data-id="@Model.Id"  class="toggle">Details</a>
+                                
+                            </div>
+                            <pre lang="js" class="@Model.Id" style="display: none">@Model.Exception</pre>
+                        }
+                        else
+                        {
+                            <div class="alert alert-info">
+                                <h4>@L("ExceptionNotFound")</h4>
+                                
+                            </div>
+                        }
+                    </section>
+                </fieldset>
+                <footer>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        @L("Close")
+                    </button>
+                </footer>
+
+            </form>
+        </div>
+    </div>
+</div>
+<script src="@Url.Content("~/Areas/SysAdmin/Views/AuditLogs/AuditLogDetails.js")"></script>

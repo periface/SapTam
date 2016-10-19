@@ -1,5 +1,6 @@
 ﻿using Cinotam.AbpModuleZero.Web.Controllers;
 using SapModule.Application.Projects;
+using SapModule.Application.Projects.Dto;
 using System.Web.Mvc;
 
 namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
@@ -26,7 +27,7 @@ namespace Cinotam.AbpModuleZero.Web.Areas.SysAdmin.Controllers
         }
         public ActionResult Create()
         {
-            return View();
+            return View(new ProjectInput());
         }
 
         public ActionResult Edit(int id)

@@ -6,24 +6,26 @@
         <h3>No hay proyectos disponibles</h3>
     </div>
 }
-@foreach (var project in Model.Projects)
-{
-    <div class="col-md-3 col-sm-12">
-        <div class="thumbnail">
-            <div class="image view view-first">
-                <img style="width: 100%; display: block;" src="~/Content/themes/gentella/images/4.jpg" alt="image">
-                <div class="mask">
-                    <p>@project.Name</p>
-                    <div class="tools tools-bottom">
-                        <a href="@Url.Action("Manage","ProjectManager",new {id=project.Id})"><i class="fa fa-link"></i></a>
-                        <a href="@Url.Action("Edit",new {id=project.Id})"><i class="fa fa-pencil"></i></a>
-                        <a href="@Url.Action("Delete",new {id=project.Id})"><i class="fa fa-times"></i></a>
+<div class="row">
+    @foreach (var project in Model.Projects)
+    {
+        <div class="col-md-3 col-sm-12">
+            <div class="thumbnail">
+                <div class="image view view-first">
+                    <img style="width: 100%; display: block;" src="/Content/sap/ProjectImage.jpg" alt="image">
+                    <div class="mask">
+                        <h5 class="text-center">@project.Name</h5>
+                        <div class="text-center">
+                            <a class="btn bg-color-blue txt-color-white" href="@Url.Action("Manage","ProjectManager",new {id=project.Id})"><i class="fa fa-link"></i></a>
+                            <a data-modal class="btn bg-color-grayDark txt-color-white" href="@Url.Action("Edit",new {id=project.Id})"><i class="fa fa-pencil"></i></a>
+                            <a class="btn bg-color-red txt-color-white" href="@Url.Action("Delete",new {id=project.Id})"><i class="fa fa-times"></i></a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="caption">
-                <p>@project.Description</p>
+                <div class="caption">
+                    <p>@project.Description</p>
+                </div>
             </div>
         </div>
-    </div>
-}
+    }
+</div>

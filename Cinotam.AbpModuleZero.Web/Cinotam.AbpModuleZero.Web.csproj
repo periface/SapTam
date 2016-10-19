@@ -304,6 +304,7 @@
     <Content Include="Abp\Framework\styles\abp.mixings.css" />
     <Content Include="Abp\Framework\styles\abp.mixings.min.css" />
     <Content Include="Abp\Framework\styles\utils\ie10fix.css" />
+    <Content Include="Content\sap\ProjectImage.jpg" />
     <Content Include="Areas\SysAdmin\Views\Cms\ChooseTitle.js" />
     <Content Include="Areas\SysAdmin\Views\Cms\CreateEditPage.js" />
     <Content Include="Areas\SysAdmin\Views\Cms\MyPages.js" />

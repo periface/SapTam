@@ -170,6 +170,10 @@
       <Project>{13572C5D-ABB6-493D-97BE-7FFC37ACBA4C}</Project>
       <Name>Cinotam.ModuleZero.AppModule</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SapModule.Application\SapModule.Application.csproj">
+      <Project>{0452CC5E-37EF-4AB3-82D2-F9C250C7DB15}</Project>
+      <Name>SapModule.Application</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

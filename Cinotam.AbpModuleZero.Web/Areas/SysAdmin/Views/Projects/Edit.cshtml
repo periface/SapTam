@@ -2,66 +2,69 @@
 
 @{
     ViewBag.Title = "Create";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
-<div class="page_title">
-    <div class="title_left">
-        <h3>Editar Proyecto</h3>
-    </div>
-</div>
-<div class="clearfix"></div>
-<div class="row">
-    <div class="col-md-12 col-sm-12 col-xs-12">
-        <div class="x_panel">
-            <div class="x_title">
-                <h2>Formulario de creación de proyecto <small><a href="#"> Ayuda</a></small></h2>
-                <div class="clearfix"></div>
+<div class="modal-dialog" role="document">
+    <form id="create-project">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModal-label">@L("ProjectSetup")</h4>
             </div>
-            <div class="x_content">
-                <br>
-                <form id="create-project" data-parsley-validate="" class="form-horizontal form-label-left" novalidate="">
-                    @Html.HiddenFor(a => a.Id)
+            <div class="modal-body">
+                @Html.HiddenFor(a=>a.Id)
+                <div class="row">
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="Name">
+                        <label class="control-label" for="project-name">
                             Nombre del Proyecto <span class="required">*</span>
                         </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            @Html.TextBoxFor(a => a.Name, new { @class = "form-control col-md-7 col-xs-12", required = "required", name = "Name" })
-                        </div>
+                        @Html.TextBoxFor(a => a.Name, new {@class = "form-control"})
+
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="project-description">
+                        <label class="control-label" for="project-description">
                             Descripción <span class="required">*</span>
                         </label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            @Html.TextAreaFor(a=>a.Description,new {@class= "form-control col-md-12" })
-                        </div>
+                        @Html.TextAreaFor(a => a.Description, new {@class = "form-control"})
+
                     </div>
                     <div class="form-group">
-                        <label for="StartDate" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Inicio</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            @Html.TextBoxFor(a=>a.StartDate,new {@class= "form-control", disabled = "disabled" })
-                        </div>
+                        <label for="start-date" class="control-label">Fecha de Inicio</label>
+
+                        @Html.TextBoxFor(a => a.StartDate, new {@class = "form-control", disabled = "disabled"})
+
                     </div>
                     <div class="form-group">
-                        <label for="EndDate" class="control-label col-md-3 col-sm-3 col-xs-12">Fecha de Finalización</label>
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                            @Html.TextBoxFor(a => a.EndDate, new { @class = "form-control", disabled = "disabled" })
-                        </div>
+                        <label for="end-date" class="control-label">Fecha de Finalización</label>
+
+                        @Html.TextBoxFor(a => a.EndDate, new {@class = "form-control", disabled = "disabled"})
+
                     </div>
-                    <div class="ln_solid"></div>
                     <div class="form-group">
-                        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                            <a data-goback class="btn btn-primary">@L("Cancel")</a>
-                            <button type="submit" class="btn btn-success">@L("Save")</button>
+                        <label for="end-date" class="control-label">¿Definir Presupuesto Inicial?</label>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" id="defineBudget"/>
+                            </label>
                         </div>
+
                     </div>
-                </form>
+                    <div id="bdefiner" class="form-group hide">
+                        <label for="initial-budget" class="control-label">Presupuesto Inicial</label>
+                        <input type="number" class="form-control" id="initial-budget" name="InitialBudget"/>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">@L("Close")</button>
+                <button type="submit" class="btn btn-primary">@L("Save")</button>
             </div>
         </div>
-    </div>
+    </form>
 </div>
-@section Scripts{
+
     <script>
         (function ($) {
             $("#create-project").on('submit', function (e) {
@@ -71,10 +74,9 @@
                 abp.ui.setBusy(form, editProject(project));
             });
             var editProject = function (project) {
-                return abp.services.app.project.editProject(project).done(function (response) {
+                return abp.services.sap.projectService.editProject(project).done(function (response) {
                     window.location.href = "/ProjectManager" + "/Manage/" + project.Id;
                 });
             };
         })($);
     </script>
-}
